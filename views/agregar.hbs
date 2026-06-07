@@ -1,0 +1,27 @@
+<h1 class="text-center mb-4">Agregar Nuevo Artista</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 bg-light">
+                <div class="card-body">
+                    <form action="/soundwave/artistas/agregar" method="POST">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre del Artista</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genero" class="form-label">Género Musical</label>
+                            <input type="text" class="form-control" id="genero" name="genero" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pais" class="form-label">País de Origen</label>
+                            <input type="text" class="form-control" id="pais" name="pais" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Agregar Artista</button>
+                        <a href="/soundwave" class="btn btn-secondary w-100 mt-2">Volver a Playlist</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

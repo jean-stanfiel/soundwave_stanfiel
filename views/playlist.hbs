@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Mi Playlist de Artistas</h1>
+
+    <! -- Boton para ir a agregar artistas -->  
+    <div class="text-center mb-4">
+        <a href="/soundwave/artistas/agregar" class="btn btn-primary btn-lg">
+            <i class="bi bi-plus-lg"></i> Agregar Artista
+        </a>
+    </div>
+
+    <div class="playlist-container">
+        {{#if artistas}}
+            <div class="row">
+                {{#each artistas}}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm border-0 bg-light">
+                            <div class="card-body text-center">
+                                <h3 class="card-title text-primary mb-3">{{this.nombre}}</h3>
+                                
+                                <p class="card-text mb-1">
+                                    <strong>Género:</strong> 
+                                    <span class="badge bg-secondary">{{this.genero}}</span>
+                                </p>
+                                
+                                <p class="card-text">
+                                    <strong>País:</strong> {{this.pais}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="alert alert-info text-center" role="alert">
+                Aún no hay artistas en tu playlist. ¡Anímate a agregar algunos!
+            </div>
+        {{/if}}
+    </div>
+</div>
