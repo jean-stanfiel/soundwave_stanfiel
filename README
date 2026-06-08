@@ -1,0 +1,140 @@
+# 🎧 SoundWave - Gestión de Artistas Musicales
+
+## 📖 Descripción
+
+SoundWave es una aplicación web desarrollada con Node.js y Express que permite administrar artistas musicales mediante una interfaz web y una API REST.
+
+El proyecto implementa el patrón MVC (Modelo - Vista - Controlador), utiliza Sequelize como ORM para interactuar con la base de datos y Handlebars como motor de plantillas para generar las vistas dinámicamente.
+
+---
+
+## 🛠 Tecnologías Utilizadas
+
+* Node
+* Express
+* Sequelize ORM
+* Express Handlebars
+* PostgreSQL
+* Dotenv
+
+---
+
+## ⚙️ Instalación
+
+### Instalar dependencias
+
+```bash
+npm install
+```
+
+### Configurar variables de entorno
+
+Crear archivo `.env`
+
+```env
+
+PORT=3000
+DB_NAME=soundwave
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+DB_HOST=localhost
+DB_PORT=5432
+
+---
+
+## 🚀 Ejecución
+
+```bash
+npm start
+```
+
+o
+
+```bash
+node app.js
+```
+
+Servidor:
+
+```text
+http://localhost:3000/soundwave
+```
+
+---
+
+## 🎵 Funcionalidades
+
+### Gestión de Artistas
+
+* Listar artistas registrados.
+* Registrar nuevos artistas.
+* Consultar artistas mediante API.
+* Visualización mediante Handlebars.
+
+### API REST
+
+#### Obtener artistas
+
+```http
+GET /soundwave/artistas
+```
+
+#### Agregar artista
+
+```http
+POST /soundwave/artistas/agregar
+```
+
+Body:
+
+```json
+{
+  "nombre": "Imagine Dragons",
+  "genero": "Rock Alternativo",
+  "pais": "Estados Unidos"
+}
+```
+
+---
+
+## 🗃 Modelo Artista
+
+Ejemplo de estructura:
+
+```javascript
+{
+    id: 1,
+    nombre: "Coldplay",
+    genero: "Rock",
+    pais: "Reino Unido"
+}
+```
+
+---
+
+## 🔄 Flujo de la Aplicación
+
+1. El usuario accede a `/soundwave`.
+2. Express recibe la solicitud.
+3. Sequelize consulta la tabla de artistas.
+4. Los datos son enviados a Handlebars.
+5. Handlebars renderiza la vista `playlist.hbs`.
+6. El navegador muestra la información al usuario.
+
+---
+
+## 📈 Mejoras Futuras
+
+* CRUD completo de artistas.
+* Gestión de canciones.
+* Sistema de búsqueda.
+* Paginación.
+* Validaciones con Express Validator.
+* Autenticación de usuarios.
+* Diseño responsivo con Bootstrap.
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto desarrollado con Node.js, Express, Handlebars y Sequelize para la administración de artistas musicales.
