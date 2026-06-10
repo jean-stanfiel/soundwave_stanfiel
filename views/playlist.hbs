@@ -1,39 +1,68 @@
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Mi Playlist de Artistas</h1>
-
-    <! -- Boton para ir a agregar artistas -->  
-    <div class="text-center mb-4">
-        <a href="/soundwave/artistas/agregar" class="btn btn-primary btn-lg">
-            <i class="bi bi-plus-lg"></i> Agregar Artista
-        </a>
-    </div>
-
-    <div class="playlist-container">
-        {{#if artistas}}
-            <div class="row">
-                {{#each artistas}}
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm border-0 bg-light">
-                            <div class="card-body text-center">
-                                <h3 class="card-title text-primary mb-3">{{this.nombre}}</h3>
-                                
-                                <p class="card-text mb-1">
-                                    <strong>Género:</strong> 
-                                    <span class="badge bg-secondary">{{this.genero}}</span>
-                                </p>
-                                
-                                <p class="card-text">
-                                    <strong>País:</strong> {{this.pais}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{else}}
-            <div class="alert alert-info text-center" role="alert">
-                Aún no hay artistas en tu playlist. ¡Anímate a agregar algunos!
-            </div>
-        {{/if}}
-    </div>
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">
+        <i class="bi bi-vinyl-fill"></i> Mi Playlist
+    </h1>
+    <p class="lead">Descubre y organiza tu música favorita</p>
 </div>
+
+<div class="row">
+    {{#if artistas}}
+        {{#each artistas}}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card card-artista h-100">
+                <img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">{{this.nombre}}</h5>
+                    <p class="card-text">
+                        <span class="badge badge-genero">{{this.genero}}</span>
+                    </p>
+                    <p class="text-muted small">
+                        <i class="bi bi-geo-alt"></i> {{this.pais}}
+                    </p>
+                    <div class="mt-3">
+                        <a href="/soundwave/artistas/{{this.id}}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-eye"></i> Ver
+                        </a>
+                        <a href="/soundwave/artistas/{{this.id}}/canciones/agregar" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-plus-circle"></i> Canción
+                        </a>
+                        <a href="/soundwave/artistas/editar/{{this.id}}" class="btn btn-sm btn-outline-warning">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <button onclick="eliminarArtista({{this.id}})" class="btn btn-sm btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    {{else}}
+        <div class="col-12">
+            <div class="alert alert-info text-center p-5">
+                <i class="bi bi-emoji-frown display-1"></i>
+                <h3>¡No hay artistas!</h3>
+                <p>Comienza agregando tu primer artista favorito</p>
+                <a href="/soundwave/artistas/agregar" class="btn btn-soundwave btn-lg">
+                    <i class="bi bi-plus-lg"></i> Agregar Artista
+                </a>
+            </div>
+        </div>
+    {{/if}}
+</div>
+
+<script>
+function eliminarArtista(id) {
+    if(confirm('¿Eliminar este artista y todas sus canciones? Esta acción no se puede deshacer.')) {
+        fetch(`/api/artistas/${id}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(() => {
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al eliminar el artista');
+            });
+    }
+}
+</script>

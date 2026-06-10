@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-transparent text-center pt-4">
+                <i class="bi bi-music-note-beamed display-3 text-info"></i>
+                <h2 class="mt-2">Editar Canción</h2>
+                <p class="text-muted">
+                    <i class="bi bi-person"></i> Artista: <strong>{{cancion.artista.nombre}}</strong>
+                </p>
+            </div>
+            <div class="card-body p-4">
+                <form action="/soundwave/canciones/editar/{{cancion.id}}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-music-note"></i> Título de la Canción
+                        </label>
+                        <input type="text" class="form-control" name="titulo" value="{{cancion.titulo}}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-disc"></i> Álbum
+                        </label>
+                        <input type="text" class="form-control" name="album" value="{{cancion.album}}">
+                        <small class="text-muted">Opcional - Deja vacío si es un single</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-stopwatch"></i> Duración (en segundos)
+                        </label>
+                        <input type="number" class="form-control" name="duracion" value="{{cancion.duracion}}" min="10" max="600" required>
+                        <small class="text-muted">
+                            Duración actual: <strong>{{formatDuracion cancion.duracion}}</strong>
+                            (Ejemplo: 180 = 3 minutos)
+                        </small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-play-circle"></i> Reproducciones
+                        </label>
+                        <input type="number" class="form-control" name="reproducciones" value="{{cancion.reproducciones}}" min="0">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-info btn-lg text-white">
+                            <i class="bi bi-save"></i> Actualizar Canción
+                        </button>
+                        <a href="/soundwave/artistas/{{cancion.artista.id}}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver al Artista
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h6 class="text-center mb-3">📊 Datos de la canción</h6>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-white">
+                            <small class="text-muted">ID Canción</small>
+                            <p class="fw-bold mb-0">{{cancion.id}}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-white">
+                            <small class="text-muted">Fecha de creación</small>
+                            <p class="fw-bold mb-0 small">{{formatDate cancion.createdAt}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

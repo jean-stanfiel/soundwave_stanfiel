@@ -1,6 +1,80 @@
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+.navbar-soundwave {
+  background: var(--primary-gradient);
+  box-shadow: var(--card-shadow);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+.card-artista {
+  transition: var(--transition);
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  cursor: pointer;
+}
+
+.card-artista:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.card-artista:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.badge-genero {
+  background: var(--primary-gradient);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.btn-soundwave {
+  background: var(--primary-gradient);
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-soundwave:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+}
+
+.table-soundwave {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
 }

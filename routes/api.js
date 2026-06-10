@@ -1,13 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const artistas =
-require('../controllers/artistaController');
+const artistaController = require('../controllers/artistaController');
+const cancionController = require('../controllers/cancionController');
 
-router.get('/artistas', artistas.listar);
-router.get('/artistas/:id', artistas.obtener);
-router.post('/artistas', artistas.crear);
-router.put('/artistas/:id', artistas.actualizar);
-router.delete('/artistas/:id', artistas.eliminar);
+// Artistas
+router.get('/artistas', artistaController.listar);
+router.get('/artistas/:id', artistaController.obtener);
+router.post('/artistas', artistaController.crear);
+router.put('/artistas/:id', artistaController.actualizar);
+router.delete('/artistas/:id', artistaController.eliminar);
 
+// Canciones
+router.get('/canciones', cancionController.listar);
+router.get('/canciones/:id', cancionController.obtener);
+router.post('/canciones', cancionController.crear);
+router.put('/canciones/:id', cancionController.actualizar);
+router.delete('/canciones/:id', cancionController.eliminar);
 
 module.exports = router;

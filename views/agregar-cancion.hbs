@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-transparent text-center pt-4">
+                <i class="bi bi-plus-circle-fill display-3 text-success"></i>
+                <h2 class="mt-2">Agregar Canción</h2>
+                <p class="text-muted">
+                    <i class="bi bi-person"></i> Artista: <strong>{{artista.nombre}}</strong>
+                </p>
+            </div>
+            <div class="card-body p-4">
+                <form action="/soundwave/artistas/{{artista.id}}/canciones" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-music-note"></i> Título de la Canción
+                        </label>
+                        <input type="text" class="form-control" name="titulo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-disc"></i> Álbum
+                        </label>
+                        <input type="text" class="form-control" name="album" placeholder="Nombre del álbum (opcional)">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-stopwatch"></i> Duración (en segundos)
+                        </label>
+                        <input type="number" class="form-control" name="duracion" min="10" max="600" required>
+                        <small class="text-muted">Ejemplo: 180 = 3 minutos, 240 = 4 minutos</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-play-circle"></i> Reproducciones
+                        </label>
+                        <input type="number" class="form-control" name="reproducciones" value="0" min="0">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-save"></i> Guardar Canción
+                        </button>
+                        <a href="/soundwave/artistas/{{artista.id}}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

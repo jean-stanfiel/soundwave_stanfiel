@@ -1,0 +1,105 @@
+<div class="mb-4">
+    <a href="/soundwave" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver
+    </a>
+</div>
+
+<div class="card shadow-lg border-0 rounded-4 overflow-hidden mb-5">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{artista.imagen}}" class="img-fluid" alt="{{artista.nombre}}" style="object-fit: cover; height: 100%; width: 100%; max-height: 300px;">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h1 class="display-5 fw-bold">{{artista.nombre}}</h1>
+                <p class="badge badge-genero fs-5">{{artista.genero}}</p>
+                <p class="mt-3"><i class="bi bi-geo-alt"></i> {{artista.pais}}</p>
+                <div class="mt-3">
+                    <a href="/soundwave/artistas/editar/{{artista.id}}" class="btn btn-warning">
+                        <i class="bi bi-pencil"></i> Editar Artista
+                    </a>
+                    <button onclick="eliminarArtista({{artista.id}})" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Eliminar Artista
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-3">
+    <i class="bi bi-music-note-list"></i> Canciones
+    <a href="/soundwave/artistas/{{artista.id}}/canciones/agregar" class="btn btn-soundwave btn-sm">
+        <i class="bi bi-plus-circle"></i> Agregar Canción
+    </a>
+</h3>
+
+<div class="table-responsive">
+    <table class="table table-soundwave">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Álbum</th>
+                <th>Duración</th>
+                <th>Reproducciones</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each artista.canciones}}
+            <tr>
+                <td><strong>{{this.titulo}}</strong></td>
+                <td>{{this.album}}</td>
+                <td><span class="badge bg-secondary">{{formatDuracion this.duracion}}</span></td>
+                <td><i class="bi bi-play-btn"></i> {{this.reproducciones}} reproducciones</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="/soundwave/canciones/editar/{{this.id}}" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
+                        <button onclick="eliminarCancion({{this.id}})" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5" class="text-center text-muted">
+                    <i class="bi bi-music-note"></i> No hay canciones para este artista
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function eliminarArtista(id) {
+    if(confirm('¿Eliminar este artista y TODAS sus canciones? Esta acción no se puede deshacer.')) {
+        fetch(`/api/artistas/${id}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(() => {
+                window.location.href = '/soundwave';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al eliminar el artista');
+            });
+    }
+}
+
+function eliminarCancion(id) {
+    if(confirm('¿Eliminar esta canción?')) {
+        fetch(`/api/canciones/${id}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(() => {
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al eliminar la canción');
+            });
+    }
+}
+</script>
