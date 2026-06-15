@@ -171,6 +171,8 @@ app.post('/soundwave/canciones/editar/:id', async (req, res) => {
     }
 });
 
+
+
 // Sincronizar base de datos y arrancar servidor
 const PORT = process.env.PORT || 3000;
 sequelize.sync({ alter: true }).then(() => {

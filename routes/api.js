@@ -16,5 +16,5 @@ router.get('/canciones/:id', cancionController.obtener);
 router.post('/canciones', cancionController.crear);
 router.put('/canciones/:id', cancionController.actualizar);
 router.delete('/canciones/:id', cancionController.eliminar);
-
+router.post('/canciones/:id/reproducir', cancionController.reproducir);
 module.exports = router;

@@ -51,7 +51,14 @@
                 <td><strong>{{this.titulo}}</strong></td>
                 <td>{{this.album}}</td>
                 <td><span class="badge bg-secondary">{{formatDuracion this.duracion}}</span></td>
-                <td><i class="bi bi-play-btn"></i> {{this.reproducciones}} reproducciones</td>
+                <td>
+                    <i class="bi bi-play-btn"></i> 
+                    <span class="play-counter-{{this.id}}">{{this.reproducciones}}</span> 
+                    
+                    <button class="btn btn-sm btn-outline-primary ms-2 reproducir-button" data-cancion-id="{{this.id}}">
+                        <i class="bi bi-play-fill"></i> Reproducir
+                    </button>
+                </td>
                 <td>
                     <div class="btn-group" role="group">
                         <a href="/soundwave/canciones/editar/{{this.id}}" class="btn btn-sm btn-warning">
@@ -74,32 +81,4 @@
     </table>
 </div>
 
-<script>
-function eliminarArtista(id) {
-    if(confirm('¿Eliminar este artista y TODAS sus canciones? Esta acción no se puede deshacer.')) {
-        fetch(`/api/artistas/${id}`, { method: 'DELETE' })
-            .then(response => response.json())
-            .then(() => {
-                window.location.href = '/soundwave';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al eliminar el artista');
-            });
-    }
-}
-
-function eliminarCancion(id) {
-    if(confirm('¿Eliminar esta canción?')) {
-        fetch(`/api/canciones/${id}`, { method: 'DELETE' })
-            .then(response => response.json())
-            .then(() => {
-                location.reload();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al eliminar la canción');
-            });
-    }
-}
-</script>
+<script src="/js/scripts.js"></script>
