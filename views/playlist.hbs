@@ -53,19 +53,3 @@
         </div>
     {{/if}}
 </div>
-
-<script>
-function eliminarArtista(id) {
-    if(confirm('¿Eliminar este artista y todas sus canciones? Esta acción no se puede deshacer.')) {
-        fetch(`/api/artistas/${id}`, { method: 'DELETE' })
-            .then(response => response.json())
-            .then(() => {
-                location.reload();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al eliminar el artista');
-            });
-    }
-}
-</script>
